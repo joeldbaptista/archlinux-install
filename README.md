@@ -66,11 +66,64 @@ $ mkswap /dev/sdX2 && swapon /dev/sdX2
 
 7. **Mount the file systems**
 
+Do:
+
 ```Bash
 $ mount /dev/sdX3 /mnt         # Mount root 
 $ mkdir /mnt/boot              # Create a boot dir
-$ mount /dev/sdX2 /mnt/boot    # Mount boot
+$ mount /dev/sdX1 /mnt/boot    # Mount boot
 ```
+If other partitions were created, it would be necessary to create directories for each one of them, and the mount them.
+
+8. **Install base system**
+
+Do 
+
+```Bash
+$ pacstrap /mnt base base-devel linux linux-firmware neovim tmux networkmanager openssh zsh 
+```
+
+You can add more packages to install, or install later. 
+
+9. **Generate ftab**
+
+Do `genfstab -U /mnt >> /mnt/etc/fstab`
+
+10. **Configure the system**
+
+Do `arch-chroot /mnt` to get in the newly installed system. And perform the necessay configurations, such as:
+
+```Bash
+$ ln -sf /usr/share/zoneinfo/Region/City /etc/localtime ## Set timezone
+$ hwclock --systohc ## Set hardware clock
+$ nvim /etc/locale.gen ## And uncomment your locale
+$ locale-gen
+$ echo LANG=en_IE.UTF-8 > /etc/locale.conf  ## The encoding you've picked
+$ echo KEYMAP=pt-latin1 > /etc/vconsole.conf ## The encoding you've picked before
+$ echo lekonne > /etc/hostname ## Name your machine
+$ mkinitcpio -P ## The guide claims this is not necessary... 
+$ passwd ## Set root password
+$ useradd -m -g users -G wheel,storage,power -s /bin/bash dasuser ## Create a your user
+$ passwd dasuser ## Change password for dasuser
+$ EDITOR=nvim visudo ## Configure wheel users; personally I set NOPASSWD for wheel users (me)
+```
+
+11. **Install bootloader**
+
+Do `bootctl install`, next `nvim /boot/loader/entries/arch.conf` and write:
+
+```Bash
+title Arch Linux
+linux /vmlinuz-linux
+initrd /intel-ucode.img ## this if you have intel CPU; if not, consult the installation guide for more details
+initrd /initramfs-linux.img
+```
+Next, `echo "options root=PARTUUID=$(blkid -s PARTUUID -o value /dev/sdX) rw" >> /boot/loader/entries/arch.conf` where `/dev/sdX` is the root partition.
+Next, `pacman -S intel-ucode` if you've got an intel CPU. 
+
+12. **Prepare Network Manager wifi service**
+
+Do `systemctl enable NetworkManager`. And `exit`, and `umount -R /mnt`. Finally, reboot.
 
 ## References
 
