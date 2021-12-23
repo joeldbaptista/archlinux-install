@@ -77,7 +77,7 @@ If other partitions were created, it would be necessary to create directories fo
 
 8. **Install base system**
 
-Do 
+Do: 
 
 ```Bash
 $ pacstrap /mnt base base-devel linux linux-firmware neovim tmux networkmanager openssh zsh 
@@ -87,7 +87,7 @@ You can add more packages to install, or install later.
 
 9. **Generate ftab**
 
-Do `genfstab -U /mnt >> /mnt/etc/fstab`
+Do `genfstab -U /mnt >> /mnt/etc/fstab`.
 
 10. **Configure the system**
 
