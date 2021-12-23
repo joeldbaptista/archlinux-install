@@ -103,7 +103,7 @@ $ echo KEYMAP=pt-latin1 > /etc/vconsole.conf ## The encoding you've picked befor
 $ echo lekonne > /etc/hostname ## Name your machine
 $ mkinitcpio -P ## The guide claims this is not necessary... 
 $ passwd ## Set root password
-$ useradd -m -g users -G wheel,storage,power -s /bin/bash dasuser ## Create a your user
+$ useradd -m -g users -G wheel,storage,power,network -s /bin/bash dasuser ## Create a your user
 $ passwd dasuser ## Change password for dasuser
 $ EDITOR=nvim visudo ## Configure wheel users; personally I set NOPASSWD for wheel users (me)
 ```
