@@ -42,6 +42,13 @@ $ iwct
 Then, `device list` to list the available interfaces. Pick the right one - probably there's only one. Then, `station device scan` scan for networks. 
 Finally, `station device get-networks` to list the `SSID`s, and `station device connect SSID`. And `exit` to quit. 
 
+Alternatively, do:
+
+```bash
+$ iwctl station WIFI_INTERFACE connect "WIFI_ESSID" --passphrase "WIFI_KEY"
+```
+Where WIFI_INTERFACE is the wifi interface (e.g. wlan0), WIFI_ESSID the name of the network, and WIFI_KEY it's password. 
+
 Test: `ping archlinux.org`
 
 4. **Update the system clock**
