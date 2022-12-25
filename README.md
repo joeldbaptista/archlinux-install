@@ -90,7 +90,10 @@ Do:
 $ pacstrap /mnt base base-devel linux linux-firmware neovim tmux networkmanager openssh zsh 
 ```
 
-You can add more packages to install, or install later. 
+You can add more packages to install, or install later. If you get trust errors when pacstraping, update the keyring before running pactrap, with this
+command:
+
+`pacman -Sy archlinux-keyring`
 
 9. **Generate ftab**
 
