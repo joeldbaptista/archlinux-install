@@ -87,7 +87,7 @@ If other partitions were created, it would be necessary to create directories fo
 Do: 
 
 ```Bash
-$ pacstrap /mnt base base-devel linux linux-firmware neovim tmux networkmanager openssh zsh 
+$ pacstrap /mnt base base-devel linux linux-firmware neovim tmux networkmanager openssh zsh docker
 ```
 
 You can add more packages to install, or install later. If you get trust errors when pacstraping, update the keyring before running pactrap, with this
@@ -113,7 +113,7 @@ $ echo KEYMAP=pt-latin1 > /etc/vconsole.conf ## The encoding you've picked befor
 $ echo lekonne > /etc/hostname ## Name your machine
 $ mkinitcpio -P ## The guide claims this is not necessary... 
 $ passwd ## Set root password
-$ useradd -m -g users -G wheel,storage,power,network -s /bin/bash dasuser ## Create a your user
+$ useradd -m -g users -G wheel,storage,power,network,docker -s /bin/bash dasuser ## Create a your user
 $ passwd dasuser ## Change password for dasuser
 $ EDITOR=nvim visudo ## Configure wheel users; personally I set NOPASSWD for wheel users (me)
 ```
@@ -131,9 +131,9 @@ initrd /initramfs-linux.img
 Next, `echo "options root=PARTUUID=$(blkid -s PARTUUID -o value /dev/sdX) rw" >> /boot/loader/entries/arch.conf` where `/dev/sdX` is the root partition.
 Next, `pacman -S intel-ucode` if you've got an intel CPU. 
 
-12. **Prepare Network Manager wifi service**
+12. **Prepare Network Manager wifi service & al**
 
-Do `systemctl enable NetworkManager`. And `exit`, and `umount -R /mnt`. Finally, reboot.
+Do `systemctl enable NetworkManager`, `systemctl enable sshd` and `systemctl enable docker`. And `exit`, and `umount -R /mnt`. Finally, reboot.
 
 ## References
 
