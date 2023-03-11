@@ -82,6 +82,8 @@ $ mount /dev/sdX1 /mnt/boot    # Mount boot
 ```
 If other partitions were created, it would be necessary to create directories for each one of them, and the mount them.
 
+**FOR BIOS** have a look at [here](https://www.itzgeek.com/how-tos/linux/arch-linux/install-arch-linux-2021.html).
+
 8. **Install base system**
 
 Do: 
