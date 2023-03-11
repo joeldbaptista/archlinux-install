@@ -57,6 +57,8 @@ Do `timedatectl set-ntp true`, and validate it with `timedatectl status`.
 
 5. **Partition the disks**
 
+**FOR BIOS** have a look at [here](https://www.itzgeek.com/how-tos/linux/arch-linux/install-arch-linux-2021.html).
+
 Do `lsblk` to list the disks. Then `gdisk /dev/sdX`, where `/dev/sdX` is the disk where we're going to install Arch. Next, in the command line dialog, select `x` for expert, and then `z` to wipe out the disk. Just answer `Y` next, and next.
 
 Next, do `cgdisk /dev/sdX`. This will open a ncurses form. Create the partitions you wish. Here we'll create a boot partitions (code `EF00` because my system boots `UEFI`, `EFO2` for `BIOS`). I usually put around 256M for this partition. Next, I create a swap partition (code `8200`). Finally, the rest is for root (code `8300`). Some people create more partions (`home`, `root`, `var`, etc). I haven't got the time for that.  
@@ -81,8 +83,6 @@ $ mkdir /mnt/boot              # Create a boot dir
 $ mount /dev/sdX1 /mnt/boot    # Mount boot
 ```
 If other partitions were created, it would be necessary to create directories for each one of them, and the mount them.
-
-**FOR BIOS** have a look at [here](https://www.itzgeek.com/how-tos/linux/arch-linux/install-arch-linux-2021.html).
 
 8. **Install base system**
 
