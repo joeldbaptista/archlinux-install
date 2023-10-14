@@ -133,6 +133,14 @@ initrd /initramfs-linux.img
 Next, `echo "options root=PARTUUID=$(blkid -s PARTUUID -o value /dev/sdX) rw" >> /boot/loader/entries/arch.conf` where `/dev/sdX` is the root partition.
 Next, `pacman -S intel-ucode` if you've got an intel CPU. 
 
+For BIOS:
+
+```Bash
+pacman -S grub
+grub-install /dev/sda
+grub-mkconfig -o /boot/grub/grub.cfg
+```
+
 12. **Prepare Network Manager wifi service & al**
 
 Do `systemctl enable NetworkManager`, `systemctl enable sshd` and `systemctl enable docker`. And `exit`, and `umount -R /mnt`. Finally, reboot.
