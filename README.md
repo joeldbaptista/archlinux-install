@@ -89,7 +89,7 @@ If other partitions were created, it would be necessary to create directories fo
 Do: 
 
 ```Bash
-$ pacstrap /mnt base base-devel linux linux-firmware neovim tmux networkmanager openssh zsh docker
+$ pacstrap /mnt base base-devel linux linux-firmware vi networkmanager openssh
 ```
 
 You can add more packages to install, or install later. If you get trust errors when pacstraping, update the keyring before running pactrap, with this
