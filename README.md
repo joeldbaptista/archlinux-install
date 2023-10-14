@@ -67,7 +67,7 @@ For swap size, there's a lot of info on the webs that you may use to decide how 
 
 6. **Format the partitions**
 
-For `boot`, do `mkfs.fat -F32 /dev/sdX1`, and for `root` do `mkfs.ext4 /dev/sdX3`. Swap is a little different:
+For `boot`, do `mkfs.fat -F32 /dev/sdX1` (if the system is UEFI; if the system is BIOS, **do not** format), and for `root` do `mkfs.ext4 /dev/sdX3`. Swap is a little different:
 
 ```Bash
 $ mkswap /dev/sdX2 && swapon /dev/sdX2
