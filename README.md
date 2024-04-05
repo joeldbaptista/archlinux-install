@@ -108,7 +108,7 @@ Do `arch-chroot /mnt` to get in the newly installed system. And perform the nece
 ```Bash
 $ ln -sf /usr/share/zoneinfo/Region/City /etc/localtime ## Set timezone
 $ hwclock --systohc ## Set hardware clock
-$ nvim /etc/locale.gen ## And uncomment your locale
+$ vi /etc/locale.gen ## And uncomment your locale
 $ locale-gen
 $ echo LANG=en_IE.UTF-8 > /etc/locale.conf  ## The encoding you've picked
 $ echo KEYMAP=pt-latin1 > /etc/vconsole.conf ## The encoding you've picked before
@@ -117,7 +117,7 @@ $ mkinitcpio -P ## The guide claims this is not necessary...
 $ passwd ## Set root password
 $ useradd -m -g users -G wheel,storage,power,network,docker -s /bin/bash dasuser ## Create a your user
 $ passwd dasuser ## Change password for dasuser
-$ EDITOR=nvim visudo ## Configure wheel users; personally I set NOPASSWD for wheel users (me)
+$ visudo ## Configure wheel users; personally I set NOPASSWD for wheel users (me)
 ```
 
 11. **Install bootloader**
