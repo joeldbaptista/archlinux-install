@@ -115,14 +115,14 @@ $ echo KEYMAP=pt-latin1 > /etc/vconsole.conf ## The encoding you've picked befor
 $ echo lekonne > /etc/hostname ## Name your machine
 $ mkinitcpio -P ## The guide claims this is not necessary... 
 $ passwd ## Set root password
-$ useradd -m -g users -G wheel,storage,power,network,docker -s /bin/bash dasuser ## Create a your user
+$ useradd -m -g users -G wheel,storage,power,network -s /bin/bash dasuser ## Create a your user
 $ passwd dasuser ## Change password for dasuser
 $ visudo ## Configure wheel users; personally I set NOPASSWD for wheel users (me)
 ```
 
 11. **Install bootloader**
 
-Do `bootctl install`, next `nvim /boot/loader/entries/arch.conf` and write:
+Do `bootctl install`, next `vi /boot/loader/entries/arch.conf` and write:
 
 ```Bash
 title Arch Linux
@@ -143,7 +143,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 12. **Prepare Network Manager wifi service & al**
 
-Do `systemctl enable NetworkManager`, `systemctl enable sshd` and `systemctl enable docker`. And `exit`, and `umount -R /mnt`. Finally, reboot.
+Do `systemctl enable NetworkManager`, `systemctl enable sshd`, `exit`, and `umount -R /mnt` to recursely unmount `/mnt`. Finally, reboot.
 
 ## References
 
