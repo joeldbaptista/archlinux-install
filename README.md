@@ -1,7 +1,5 @@
 # How to install archlinux 
 
-This recipe teaches you how to install archlinux on a PC (booting from USB). If a recipe for Raspberry Pi in needed, try this [one](./rbpi.md).
-
 ## Burn ISO into USB
 
 ```Bash
