@@ -127,11 +127,12 @@ Do `bootctl install`, next `vi /boot/loader/entries/arch.conf` and write:
 ```Bash
 title Arch Linux
 linux /vmlinuz-linux
-initrd /intel-ucode.img ## this if you have intel CPU; if not, consult the installation guide for more details
+initrd /intel-ucode.img ## this if you have intel CPU
+#initrd /amd-ucode.img ## this if you have AMD CPU
 initrd /initramfs-linux.img
 ```
 Next, `echo "options root=PARTUUID=$(blkid -s PARTUUID -o value /dev/sdX) rw" >> /boot/loader/entries/arch.conf` where `/dev/sdX` is the root partition.
-Next, `pacman -S intel-ucode` if you've got an intel CPU. 
+Next, `pacman -S intel-ucode` if you've got an intel CPU. For AMD CPUs, do `pacman -S amd-ucode`
 
 For BIOS:
 
